@@ -1,0 +1,19 @@
+# Files
+**/.terraform/*
+.terraform.lock.hcl
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+/providers.tf
+.DS_Store
+kubeconfig.temp
+kubeconfig
+create_walrus_connector.sh
+update_walrus_connector.sh

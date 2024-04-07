@@ -1,0 +1,172 @@
+openapi: 3.0.3
+info:
+  title: OpenAPI schema for template terraform-aws-eks
+components:
+  schemas:
+    variables:
+      type: object
+      required:
+      - cluster_name
+      - k8s_connector_name
+      - walrus_token
+      properties:
+        cluster_name:
+          title: Cluster Name
+          type: string
+          description: The cluster name of the EKS cluster
+          x-walrus-ui:
+            group: Basic
+            order: 1
+        cluster_version:
+          title: Cluster Version
+          type: string
+          description: The cluster version of the EKS cluster
+          default: "1.29"
+          x-walrus-ui:
+            group: Basic
+            order: 2
+        tags:
+          title: Tags
+          type: object
+          description: A map of tags to add to all resources
+          default:
+            terraform_created: "true"
+            walrus_managed: "true"
+          additionalProperties:
+            type: string
+          x-walrus-ui:
+            colSpan: 12
+            group: Basic
+            order: 3
+        enable_cloudwatch_observability:
+          title: Enable Cloudwatch Observability
+          type: boolean
+          description: Enable AWS CloudWatch observability for EKS cluster
+          default: false
+          x-walrus-ui:
+            group: Basic
+            order: 4
+        walrus_url:
+          title: Walrus Url
+          type: string
+          description: URL of the Walrus server
+          default: https://localhost
+          x-walrus-ui:
+            group: Basic
+            order: 5
+        walrus_token:
+          title: Walrus Token
+          type: string
+          description: API Token for authenticating with the Walrus server
+          x-walrus-ui:
+            group: Basic
+            order: 6
+        arch:
+          title: Arch
+          type: string
+          description: The underlying architecture on which the walrus server runs
+          default: amd64
+          x-walrus-ui:
+            group: Basic
+            order: 7
+        os:
+          title: Os
+          type: string
+          description: The underlying OS on which the walrus server runs
+          default: linux
+          x-walrus-ui:
+            group: Basic
+            order: 8
+        k8s_connector_name:
+          title: K8s Connector Name
+          type: string
+          description: Name of the Kubernetes connector
+          x-walrus-ui:
+            group: Basic
+            order: 9
+        env_type:
+          title: Env Type
+          type: string
+          description: The environment type of the Kubernetes connector
+          default: development
+          x-walrus-ui:
+            group: Basic
+            order: 10
+        executed_repeatedly:
+          title: Executed Repeatedly
+          type: boolean
+          description: Allow command to be executed repeatedly
+          default: true
+          x-walrus-ui:
+            group: Basic
+            order: 11
+        allowed_cidr_ipv4:
+          title: Allowed Cidr Ipv4
+          type: string
+          description: The allowed CIDR by the EKS node security group
+          default: 0.0.0.0/0
+          x-walrus-ui:
+            group: Basic
+            order: 12
+        allowed_ports:
+          title: Allowed Ports
+          type: array
+          description: The allowed ports by the EKS node security group
+          default:
+          - 80
+          - 443
+          items:
+            type: number
+          x-walrus-ui:
+            colSpan: 12
+            group: Basic
+            order: 13
+        ssh_key_pair_name:
+          title: Ssh Key Pair Name
+          type: string
+          description: The SSH key pair name to connect to the EKS node
+          default: ""
+          x-walrus-ui:
+            group: Basic
+            order: 14
+        connection_type:
+          title: Connection Type
+          type: string
+          description: The connection type, only support SSH in this module
+          default: ssh
+          x-walrus-ui:
+            group: Basic
+            order: 15
+        connection_user:
+          title: Connection User
+          type: string
+          description: The user to use for the connection
+          default: ec2-user
+          x-walrus-ui:
+            group: Basic
+            order: 16
+        ssh_key_pair_content:
+          title: Ssh Key Pair Content
+          type: string
+          description: The content of an SSH key to use for the connection
+          default: ""
+          format: password
+          writeOnly: true
+          x-walrus-ui:
+            group: Basic
+            order: 17
+        node_init_script:
+          title: Node Init Script
+          type: string
+          description: User-defined init script to customize the OS configuration
+            behaviors of the EKS nodes and to pass data into the EKS nodes
+          default: |
+            #!/bin/bash
+            yum install -y vim
+            echo "OS initialized by Seal Walrus!" > /home/ec2-user/seal
+          x-walrus-ui:
+            group: Basic
+            order: 18
+      x-walrus-ui:
+        groupOrder:
+        - Basic
