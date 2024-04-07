@@ -52,7 +52,7 @@ components:
             group: EKS Cloudwatch Observability
             order: 4
         walrus_url:
-          title: Walrus Url
+          title: Walrus URL
           type: string
           description: URL of the Walrus server
           default: https://localhost
@@ -118,7 +118,7 @@ components:
             order: 11
             hidden: true
         allowed_cidr_ipv4:
-          title: Allowed Cidr Ipv4
+          title: Allowed CIDR Ipv4
           type: string
           description: The allowed CIDR by the EKS node security group
           default: 0.0.0.0/0
@@ -143,6 +143,8 @@ components:
           type: string
           description: The connection type, only support SSH in this module
           default: ssh
+          enum:
+          - ssh
           x-walrus-ui:
             group: Node OS Init
             order: 14
@@ -163,7 +165,7 @@ components:
             group: Node OS Init
             order: 16
         ssh_key_pair_content:
-          title: Ssh Key Pair Content
+          title: SSH Key Pair Content
           type: string
           description: The content of an SSH key to use for the connection
           default: ""
@@ -184,6 +186,7 @@ components:
           x-walrus-ui:
             group: Node OS Init
             order: 18
+            widget: TextArea
       x-walrus-ui:
         groupOrder:
         - EKS
